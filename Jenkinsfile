@@ -15,7 +15,6 @@ pipeline {
                     serverUrl: 'https://aks-1-microservicesfin-9ab869-umma1mj2.hcp.centralindia.azmk8s.io'
                 ) {
                     sh 'kubectl apply -f deployment-service.yml'
-                    sleep(time: 60, unit: 'SECONDS')
                 }
             }
         }
@@ -31,7 +30,7 @@ pipeline {
                     restrictKubeConfigAccess: false,
                     serverUrl: 'https://aks-1-microservicesfin-9ab869-umma1mj2.hcp.centralindia.azmk8s.io'
                 ) {
-                    sh 'kubectl get all -n webapps'
+                    sh 'kubectl get svc -n webapps'
                 }
             }
         }

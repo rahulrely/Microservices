@@ -44,13 +44,13 @@ spec:
           periodSeconds: 5
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:8080"]
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 64Mi
+#          limits:
+#            cpu: 200m
+#            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -105,13 +105,13 @@ spec:
             value: "currencyservice:7000"
           - name: CART_SERVICE_ADDR
             value: "cartservice:7070"
-          resources:
-            requests:
-              cpu: 100m
-              memory: 64Mi
-            limits:
-              cpu: 200m
-              memory: 128Mi
+#          resources:
+#            requests:
+#              cpu: 100m
+#              memory: 64Mi
+#            limits:
+#              cpu: 200m
+#              memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -161,13 +161,13 @@ spec:
           value: "productcatalogservice:3550"
         - name: DISABLE_PROFILER
           value: "1"
-        resources:
-          requests:
-            cpu: 100m
-            memory: 220Mi
-          limits:
-            cpu: 200m
-            memory: 450Mi
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 220Mi
+#          limits:
+#            cpu: 200m
+#            memory: 450Mi
 ---
 apiVersion: v1
 kind: Service
@@ -236,23 +236,15 @@ spec:
             value: "checkoutservice:5050"
           - name: AD_SERVICE_ADDR
             value: "adservice:9555"
-          # # ENV_PLATFORM: One of: local, gcp, aws, azure, onprem, alibaba
-          # # When not set, defaults to "local" unless running in GKE, otherwies auto-sets to gcp
-          # - name: ENV_PLATFORM
-          #   value: "aws"
           - name: ENABLE_PROFILER
             value: "0"
-          # - name: CYMBAL_BRANDING
-          #   value: "true"
-          # - name: FRONTEND_MESSAGE
-          #   value: "Replace this with a message you want to display on all pages."
-          resources:
-            requests:
-              cpu: 100m
-              memory: 64Mi
-            limits:
-              cpu: 200m
-              memory: 128Mi
+#          resources:
+#            requests:
+#              cpu: 100m
+#              memory: 64Mi
+#            limits:
+#              cpu: 200m
+#              memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -311,13 +303,13 @@ spec:
         livenessProbe:
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:50051"]
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 64Mi
+#          limits:
+#            cpu: 200m
+#            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -363,13 +355,13 @@ spec:
         livenessProbe:
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:3550"]
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 64Mi
+#          limits:
+#            cpu: 200m
+#            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -407,13 +399,13 @@ spec:
         env:
         - name: REDIS_ADDR
           value: "redis-cart:6379"
-        resources:
-          requests:
-            cpu: 200m
-            memory: 64Mi
-          limits:
-            cpu: 300m
-            memory: 128Mi
+#        resources:
+#          requests:
+#            cpu: 200m
+#            memory: 64Mi
+#          limits:
+#            cpu: 300m
+#            memory: 128Mi
         readinessProbe:
           initialDelaySeconds: 15
           exec:
@@ -471,13 +463,13 @@ spec:
           value: "frontend:80"
         - name: USERS
           value: "10"
-        resources:
-          requests:
-            cpu: 300m
-            memory: 256Mi
-          limits:
-            cpu: 500m
-            memory: 512Mi
+#        resources:
+#          requests:
+#            cpu: 300m
+#            memory: 256Mi
+#          limits:
+#            cpu: 500m
+#            memory: 512Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -511,13 +503,13 @@ spec:
         livenessProbe:
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:7000"]
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 64Mi
+#          limits:
+#            cpu: 200m
+#            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -561,15 +553,16 @@ spec:
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:50051"]
         livenessProbe:
+          periodSeconds: 5
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:50051"]
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 64Mi
+#          limits:
+#            cpu: 200m
+#            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -613,13 +606,13 @@ spec:
         volumeMounts:
         - mountPath: /data
           name: redis-data
-        resources:
-          limits:
-            memory: 256Mi
-            cpu: 125m
-          requests:
-            cpu: 70m
-            memory: 200Mi
+#        resources:
+#          limits:
+#            memory: 256Mi
+#            cpu: 125m
+#          requests:
+#            cpu: 70m
+#            memory: 200Mi
       volumes:
       - name: redis-data
         emptyDir: {}
@@ -660,13 +653,13 @@ spec:
         env:
         - name: PORT
           value: "9555"
-        resources:
-          requests:
-            cpu: 200m
-            memory: 180Mi
-          limits:
-            cpu: 300m
-            memory: 300Mi
+#        resources:
+#          requests:
+#            cpu: 200m
+#            memory: 180Mi
+#          limits:
+#            cpu: 300m
+#            memory: 300Mi
         readinessProbe:
           initialDelaySeconds: 20
           periodSeconds: 15
